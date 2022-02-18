@@ -1,0 +1,28 @@
+<h1 class="text-center">Bienvenido a la APP del amor</h1>
+<form class="col-3 mx-auto form-viewport" (ngSubmit)="login()">
+  <div class="form-group m-3">
+    <label for="email" class="form-control-label">Email</label>
+    <input
+      class="form-control"
+      type="email"
+      name="email"
+      id="email"
+      placeholder="Introduce tu mail"
+      required="required"
+    />
+  </div>
+  <div class="form-group m-3">
+    <label for="password" class="form-control-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      id="password"
+      placeholder="Introduce tu password"
+      required="required"
+    />
+  </div>
+  <div class="form-input text-center">
+    <button class="btn btn-primary">Log in</button>
+  </div>
+</form>
