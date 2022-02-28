@@ -1,0 +1,41 @@
+<div class="p-2 d-flex flex-column gap-1">
+  <label class="form-label" for="ingredients">Ingrediente: </label>
+  <input
+    #ingredients
+    type="text"
+    class="form-control"
+    name="ingredients"
+    placeholder="ej. chicken"
+    (keyup.enter)="newRecipes()"
+    required
+  />
+  <p class="text-danger">(El ingredinete no puede quedar vacío)</p>
+</div>
+<div *ngIf="recipes != null" class="container-md d-flex flex-column gap-3">
+  <mat-card *ngFor="let recipe of recipes.hits" class="row">
+    <mat-card-header class="row">
+      <mat-card-title class="col text-decoration-underline text-center p-2">{{
+        recipe.recipe.label
+      }}</mat-card-title>
+    </mat-card-header>
+    <div class="recipe__body row gap-2">
+      <div class="recipe__img col-4 mx-auto">
+        <img
+          class="mx-auto img-thumbnail rounded"
+          mat-card-image
+          src="{{ recipe.recipe.images.REGULAR.url }}"
+          alt="Photo of a Shiba Inu"
+        />
+      </div>
+      <mat-card-content class="col p-2 text-center">
+        <h4 class="text-decoration-underline">Ingredientes</h4>
+        <p *ngFor="let line of recipe.recipe.ingredientLines">
+          {{ line }}
+        </p>
+        <a class="nav-link text-warning" href="{{ recipe.recipe.url }}"
+          >Enlace: {{ recipe.recipe.source }}</a
+        >
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>

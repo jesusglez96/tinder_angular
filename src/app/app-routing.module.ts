@@ -1,17 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { MatchComponent } from './modules/matches/match/match.component';
-import { LoginComponent } from './modules/users/login/login.component';
-import { RegisterComponent } from './modules/users/register/register.component';
-import { UserComponent } from './modules/users/user/user.component';
+import { AppComponent } from './app.component';
+import { RecipesComponent } from './modules/api/recipes/recipes.component';
+import { TinderComponent } from './modules/tinder/tinder/tinder.component';
 
 const routes: Routes = [
-  { path: '', component: UserComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'match', component: MatchComponent },
-  { path: 'matches/:id', component: MatchComponent },
+  { path: '', component: RecipesComponent },
+  { path: 'tinder', component: TinderComponent },
+  { path: 'words', component: RecipesComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

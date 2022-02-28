@@ -1,0 +1,111 @@
+<form
+  class="p-2 d-flex flex-column gap-2"
+  [formGroup]="this.formMatch"
+  (ngSubmit)="newMatch()"
+>
+  <div>
+    <label class="form-label" for="name">Nombre: </label>
+    <input
+      type="text"
+      formControlName="name"
+      class="form-control"
+      name="name"
+      placeholder="ej. Pepe"
+    />
+
+    <span class="text-danger" *ngIf="formMatch.controls.name.errors">
+      El nombre no puede quedar vacío</span
+    >
+  </div>
+  <div>
+    <label class="form-label" for="email">Email: </label>
+    <input
+      type="email"
+      formControlName="email"
+      class="form-control"
+      name="email"
+      placeholder="ej. ejemplo@angular.com"
+    />
+    <span class="text-danger" *ngIf="formMatch.controls.email.errors">
+      El email no puede quedar vacío o debe ser un email válido</span
+    >
+  </div>
+
+  <div>
+    <label class="form-label" for="ratio">Cuanto te gusta: </label>
+    <input
+      type="number"
+      formControlName="ratio"
+      class="form-control"
+      name="ratio"
+      placeholder="0 - 10"
+    />
+    <div>
+      <div
+        *ngIf="
+          formMatch.controls.ratio.errors && formMatch.controls.ratio.touched
+        "
+      >
+        <span
+          class="text-danger"
+          *ngIf="formMatch.controls.ratio.errors.required"
+        >
+          El ratio no puede quedar vacío</span
+        >
+        <span class="text-danger" *ngIf="formMatch.controls.ratio.errors.min">
+          El ratio no puede ser un valor menor que 0</span
+        >
+        <span class="text-danger" *ngIf="formMatch.controls.ratio.errors.max">
+          El ratio no puede ser un valor mayor que 10</span
+        >
+      </div>
+    </div>
+  </div>
+  <div>
+    <button
+      class="mt-2 btn btn-primary d-flex justify-content-center align-items-center p-2"
+      type="submit"
+      value="Guardar"
+      [disabled]="formMatch.invalid"
+    >
+      <mat-icon class="text-center">person_add</mat-icon>
+    </button>
+  </div>
+</form>
+
+<div class="container-xl mt-2" *ngIf="matches != null">
+  <div class="row text-center">
+    <div class="col">
+      <p class="text-decoration-underline">Nombre</p>
+    </div>
+    <div class="col">
+      <p class="text-decoration-underline">Email</p>
+    </div>
+    <div class="col">
+      <p class="text-decoration-underline">Caliente</p>
+    </div>
+    <div class="col">
+      <p class="text-decoration-underline">Eliminar</p>
+    </div>
+  </div>
+  <div class="row mt-2 text-center" *ngFor="let match of matches">
+    <div class="col">
+      <p>{{ match.name }}</p>
+    </div>
+
+    <div class="col">
+      <p>{{ match.email }}</p>
+    </div>
+    <div class="col">
+      <div class="row">
+        <p class="col text-end">{{ match.ratio }}/10</p>
+        <mat-icon class="col text-start">whatshot</mat-icon>
+      </div>
+    </div>
+    <div class="col">
+      <button class="btn btn-outline-danger" (click)="eliminar(match.email)">
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>
